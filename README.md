@@ -1,135 +1,124 @@
-# petsync-android
-Phase 1 of Hackapet android project.
-# Configure your environment
+# PetSync Android
 
-- Git
-- Github and Gitlab accounts
-- Android Studio
+![PetSync Logo](readme/thumbnail.png)
 
-## Step to Step guide
+Phase 1 of the Hackapet Android project.
 
-### 1. **Install Git**
+## Table of Contents
+
+1. [Project Purpose](#project-purpose)
+2. [Environment Setup](#environment-setup)
+   - [Git](#git)
+   - [GitHub and GitLab Accounts](#github-and-gitlab-accounts)
+   - [Android Studio](#android-studio)
+3. [Instructions by Operating System](#instructions-by-operating-system)
+   - [Linux](#linux)
+   - [Mac](#mac)
+   - [Windows](#windows)
+4. [Verification](#verification)
+5. [Additional Resources](#additional-resources)
+
+## Project Purpose
+
+PetSync Android is Phase 1 of the Hackapet project for Android devices. This application aims to optimize animal shelter management through an efficient record-keeping system that streamlines daily operations.
+
+Key features:
+- Tracking of animals in the shelter
+- Supply inventory
+- Report generation
+
+## Environment Setup
+
+### Git
 
 Git is essential for version control. It allows you to track changes in your code, collaborate with others, and manage your code repositories.
 
-- **Check if Git is already installed:**
-Open Terminal and type:
-    
-    ```bash
-    git --version
-    ```
-    
-    If Git is installed, you'll see the version number. If not, follow the next steps.
-    
-- **Install Git:**
-If Git isn’t installed, you can install it via Homebrew (a package manager for macOS). First, install Homebrew if you don’t have it:
-    
-    ```bash
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    ```
-    
-    Then install Git:
-    
-    ```bash
-    brew install git
-    ```
-    
+### GitHub Account
 
-### 2. **Set Up GitHub and GitLab Accounts**
+You'll need an account on GitHub to collaborate on the project and access repositories.
 
-After installing Git, you’ll want to set up your GitHub and GitLab accounts.
+### Android Studio
 
-Create if you don’t have a [Github](https://github.com/) and [Gitlab](https://about.gitlab.com/) account.
+Android Studio is the official IDE for Android development and is necessary for working on this project.
 
-- **Create SSH Keys:**
-Generate an SSH key if you don’t already have one. This will allow you to securely connect to GitHub and GitLab without needing to enter your password every time.
-    
-    ```bash
-    ssh-keygen -t ed25519 -C "your_email@example.com"
-    
-    ```
-    
-    Follow the prompts to save the key in the default location.
-    
-- **Add SSH Key to SSH Agent:**
-    
-    ```bash
-    eval "$(ssh-agent -s)"
-    ssh-add -K ~/.ssh/id_ed25519
-    
-    ```
-    
-- **Add SSH Key to GitHub:**
-Copy the SSH key to your clipboard:
-    
-    ```bash
-    pbcopy < ~/.ssh/id_ed25519.pub
-    
-    ```
-    
-    Go to GitHub [SSH Keys](https://github.com/settings/keys) and add your key.
-    
-    Go to GitLab [SSH Keys](https://gitlab.com/-/user_settings/ssh_keys) and add your key.
-    
-- **Configure Git:**
-Set up your Git user information:
-    
-    ```bash
-    git config --global user.name "Your Name"
-    git config --global user.email "your_email@example.com"
-    ```
-    
-- **Verify Configuration:**
-To check your configuration:
-    
-    ```bash
-    git config --list
-    ```
+## Instructions by Operating System
 
-### 4. **Install Android Studio**
+### Linux
 
-Android Studio is the official IDE for Android development.
+1. **Install Git:**
+   ```
+   sudo apt-get update
+   sudo apt-get install git
+   ```
 
-- **Download Android Studio:**
-Visit the [Android Studio download page](https://developer.android.com/studio) and download the latest version for macOS.
-- **Install Android Studio:**
-Open the downloaded file and drag Android Studio to your Applications folder.
-- **Run Android Studio:**
-Open Android Studio from your Applications folder. It will guide you through the initial setup, including installing the necessary SDKs, plugins, and configuring your environment.
-- **Configure the Android SDK:**
-Ensure the Android SDK is properly configured. Go to `Android Studio > Preferences > Appearance & Behavior > System Settings > Android SDK` and verify that the required SDKs are installed.
-- **Configure the AVD Manager:**
-The AVD (Android Virtual Device) Manager allows you to run Android emulators. You can create virtual devices here to test your applications.
+2. **Configure Git:**
+   ```
+   git config --global user.name "Your Name"
+   git config --global user.email "your_email@example.com"
+   ```
 
-### 5. **Additional Configuration**
+3. **Install Android Studio:**
+   - Download Android Studio from [the official page](https://developer.android.com/studio).
+   - Extract the downloaded file and move it to your applications directory.
+   - Run the `studio.sh` script in the `bin` folder to start Android Studio.
 
-- **Install Homebrew (Optional):**
-Homebrew is a package manager that makes it easy to install and manage software on your Mac. You can use it to install other development tools you might need.
-    
-    ```bash
-    /bin/bash -c "$(curl -fsSL <https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh>)"
-    ```
-    
-- **Install Java (Required for Android Studio):**
-If Android Studio requires a specific version of Java, you can install it via Homebrew:
-    
-    ```bash
-    brew install openjdk@11
-    ```
-    
-    Then, link it:
-    
-    ```bash
-    sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
-    ```
-    
+### Mac
 
-### 6. **Verify Everything Works**
+1. **Install Git:**
+   ```
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   brew install git
+   ```
 
-- **GitHub/GitLab:** Try cloning a repository using SSH to ensure your SSH keys are correctly configured:
-    
-    ```bash
-    git clone git@github.com:username/repository.git
-    ```
-    
-- **Android Studio:** Create a new Android project and run it on an emulator.
+2. **Configure Git:**
+   ```
+   git config --global user.name "Your Name"
+   git config --global user.email "your_email@example.com"
+   ```
+
+3. **Install Android Studio:**
+   - Download Android Studio from [the official page](https://developer.android.com/studio).
+   - Move the Android Studio app to your Applications folder.
+   - Open Android Studio and follow the setup wizard.
+
+### Windows
+
+1. **Install Git:**
+   - Download Git from [git-scm.com](https://git-scm.com/download/win).
+   - Run the installer and follow the setup wizard.
+
+2. **Configure Git:**
+   ```
+   git config --global user.name "Your Name"
+   git config --global user.email "your_email@example.com"
+   ```
+
+3. **Install Android Studio:**
+   - Download Android Studio from [the official page](https://developer.android.com/studio).
+   - Run the installer and follow the setup wizard.
+
+## Verification
+
+After installation, verify that everything is working correctly:
+
+1. **Check Git installation:**
+   ```
+   git --version
+   ```
+
+2. **Verify GitHub/GitLab access:**
+   Try cloning a repository:
+   ```
+   git clone git@github.com:username/repository.git
+   ```
+
+3. **Test Android Studio:**
+   Create a new Android project and run it on an emulator.
+
+## Additional Resources
+
+- [Project Wiki](https://github.com/hackapet-project/petsync-android/wiki)
+- [Android Developer Documentation](https://developer.android.com/docs)
+- [Git Documentation](https://git-scm.com/doc)
+
+For more information or if you encounter any issues, please refer to our [wiki](https://github.com/hackapet-project/petsync-android/wiki) or open an issue in the repository.
