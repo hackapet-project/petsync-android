@@ -1,5 +1,7 @@
 # PetSync Android
 
+[English](README.md) | [Español](README.es.md)
+
 ![PetSync Logo](readme/thumbnail.png)
 
 Phase 1 of the Hackapet Android project.
