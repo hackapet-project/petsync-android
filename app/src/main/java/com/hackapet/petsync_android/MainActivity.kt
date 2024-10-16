@@ -24,6 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PetsyncandroidTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    // check message for good kmp library integration
                     val greetings by remember { mutableStateOf(Greeting().greet()) }
                     Greeting(
                         name = greetings,
