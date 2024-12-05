@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pet_image_size" unit="dp">125dp</dimen>
+</resources>
