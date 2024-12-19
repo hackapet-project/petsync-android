@@ -1,10 +1,13 @@
 package com.hackapet.petsync_android.ui.screens.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -15,6 +18,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -67,12 +71,15 @@ fun HomeScreen(
 @Composable
 fun CreateNewItemView(onNavigateToCreate: () -> Unit = {}) {
     Box(
-        modifier = Modifier.clickable { onNavigateToCreate() }
+        modifier = Modifier
+            .height(IntrinsicSize.Max)
+            .background(Color.Red)
+            .clickable { onNavigateToCreate() }
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_pet_add),
             contentDescription = "A descriptive text for the image",
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.size(50.dp),
             alignment = Alignment.Center
         )
     }
