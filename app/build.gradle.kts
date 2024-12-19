@@ -41,9 +41,16 @@ android {
 
 dependencies {
 
+    implementation(libs.koin.android)
+    implementation (libs.koin.androidx.compose)
+    implementation (libs.koin.core.viewmodel)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+
+
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -60,4 +67,14 @@ dependencies {
 
     // added kmp library
     implementation(libs.shared.android)
+
+    // glide
+
+    implementation(libs.glide)
+    implementation(libs.compose)
+    annotationProcessor(libs.compiler)
+
+    // navigation
+    implementation(libs.androidx.navigation.compose)
+
 }
