@@ -1,8 +1,6 @@
 package com.hackapet
 
 import android.app.Application
-import com.hackapet.petsync_android.ui.screens.details.DetailsViewModel
-import com.hackapet.petsync_android.ui.screens.home.HomeViewModel
 import com.hackapet.petsync_kmp.di.AndroidAppModule
 import com.hackapet.petsync_kmp.di.AppModule
 import com.hackapet.petsync_kmp.di.Keys
@@ -15,8 +13,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         initKoin(appModule = configModule(this), modules = listOf(module {
-            viewModel { HomeViewModel(get()) }
-            viewModel { DetailsViewModel(get()) }
+
         }))
     }
 

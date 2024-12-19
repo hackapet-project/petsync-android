@@ -15,15 +15,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.hackapet.petsync_kmp.ui.details.DetailViewModel
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsScreen(
-    viewModel: DetailsViewModel = koinViewModel(),
-    petId: Long, onBack: () -> Unit
+    petId: Long,
+    onBack: () -> Unit
 ) {
-    val pet by viewModel.getPet(petId).collectAsState(null)
+
+    val viewModel: DetailViewModel = koinViewModel { parametersOf(petId) }
+
+    val petState by viewModel.loadPet().collectAsState()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -41,11 +46,11 @@ fun DetailsScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            pet.run {
+            petState.run {
                 when {
-                    this == null -> Text(text = "Pet Loading...")
-                    this.id == -1L -> Text(text = "Pet Not Found")
-                    else -> Text(text = this.name)
+                    !this.loaded -> Text(text = "Pet Loading...")
+                    this.pet == null -> Text(text = "Pet Not Found")
+                    else -> Text(text = this.pet!!.name)
                 }
             }
         }

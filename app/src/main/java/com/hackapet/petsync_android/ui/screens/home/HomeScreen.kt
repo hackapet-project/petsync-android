@@ -1,6 +1,8 @@
 package com.hackapet.petsync_android.ui.screens.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,32 +16,65 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.hackapet.petsync_android.R
 import com.hackapet.petsync_kmp.Pet
+import com.hackapet.petsync_kmp.ui.home.HomeViewModel
+import com.hackapet.petsync_kmp.ui.home.PetItem
 import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel(),
-    onNavigateToDetail: (Long) -> Unit = {}
+    onNavigateToDetail: (Long) -> Unit = {},
+    onNavigateToCreate: () -> Unit = {}
 ) {
 
-    val pets by viewModel.getPets().collectAsState(initial = emptyList())
+    val petListState by viewModel.loadPets().collectAsState()
+
     Scaffold { paddingValues ->
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)) {
-            LazyRow {
-                items(pets.size, key = { index -> pets[index].id }) { index ->
-                    PetListItemView(pets[index], onNavigateToDetail)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+
+           if (petListState.loaded) {
+                LazyRow {
+                    val pets = petListState.pets
+                    items(pets.size, key = { index -> pets[index].itemId }) { index ->
+                        when (val item = pets[index]) {
+                            is PetItem.CreteNewPetItem ->
+                                CreateNewItemView(onNavigateToCreate)
+
+                            is PetItem.DetailPetItem ->
+                                PetListItemView(item.pet, onNavigateToDetail)
+                        }
+                    }
                 }
+            } else {
+                Text("Loading...")
             }
         }
+    }
+}
+
+@Composable
+fun CreateNewItemView(onNavigateToCreate: () -> Unit = {}) {
+    Box(
+        modifier = Modifier.clickable { onNavigateToCreate() }
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_pet_add),
+            contentDescription = "A descriptive text for the image",
+            modifier = Modifier.fillMaxSize(),
+            alignment = Alignment.Center
+        )
     }
 }
 
@@ -49,20 +84,20 @@ fun PetListItemView(pet: Pet, onNavigateToDetail: (Long) -> Unit = {}) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.clickable { onNavigateToDetail(pet.id) }
     ) {
-        Image("add url to pet model")
+        UrlImage("add url to pet model")
         Text(text = pet.name)
     }
 }
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun Image(url: String) =
+fun UrlImage(url: String) =
     GlideImage(
         model = url,
         contentDescription = "",
         modifier = Modifier
             .size(dimensionResource(id = R.dimen.pet_image_size))
-            .padding(5.dp),
+            .padding(dimensionResource(R.dimen.pet_image_padding)),
         requestBuilderTransform = {
             it.placeholder(R.drawable.ic_pet_placeholder)
                 .error(R.drawable.ic_pet_error)
