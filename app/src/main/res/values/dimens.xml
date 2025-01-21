@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="pet_image_size" unit="dp">125dp</dimen>
-    <dimen name="pet_image_padding" unit="dp">5dp</dimen>
+
+    <dimen name="pet_list_horizontal_height" unit="dp">150dp</dimen>
+    <dimen name="pet_list_vertical_height" unit="dp">100dp</dimen>
+    <dimen name="pet_create_image_size" unit="dp">50dp</dimen>
+    <dimen name="pet_create_button_width" unit="dp">70dp</dimen>
+    <dimen name="pet_image_list_size" unit="dp">60dp</dimen>
+    <dimen name="pet_image_padding" unit="dp">25dp</dimen>
+    <dimen name="pet_list_button_size" unit="dp">40dp</dimen>
 </resources>
