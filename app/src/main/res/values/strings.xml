@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">petsync-android</string>
+    <string name="pet_create_image_description">description for pet image</string>
+    <string name="pet_list_button_description">description for listing button</string>
 </resources>
